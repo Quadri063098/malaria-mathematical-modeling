@@ -36,7 +36,7 @@ $$\frac{dE_v}{dt} = \frac{b \beta_{vh} S_v I_h}{N_h} - (\nu_v + \mu_v) E_v$$
 $$\frac{dI_v}{dt} = \nu_v E_v - \mu_v I_v$$
 $$\frac{dW}{dt} = u(t) + \Lambda_w - \mu_w W + c S_v W$$
 
-*(Where $u(t)$ represents the time-dependent control variable for releasing modified mosquitoes, and $c$ is the competition coefficient).*
+*(Where u(t) represents the time-dependent control variable for releasing modified mosquitoes, and c is the competition coefficient).*
 
 ## Computational Methods
 
