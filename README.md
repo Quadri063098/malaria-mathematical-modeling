@@ -1,55 +1,187 @@
-# Mathematical Modelling of Malaria Transmission
+# Mathematical Modelling of Malaria Transmission and Vector Population Replacement
 
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-active_research-brightgreen)
+## Overview
 
-A computational framework for studying malaria transmission dynamics under mosquito population replacement strategies and climate variability.
+This project develops a computational mathematical framework for investigating malaria transmission and the potential use of mosquito population replacement as a disease-control strategy.
+
+The work combines **mathematical epidemiology, dynamical systems, numerical analysis, and scientific computing** to study interactions between human and mosquito populations and to investigate how changes in vector population dynamics may affect malaria transmission.
+
+The project is part of an independent research portfolio focused on applying mathematical and computational methods to biological and public-health problems.
+
+---
 
 ## Research Question
 
-How can mathematical models be used to investigate mosquito population replacement strategies (e.g., *Wolbachia* introgression) for reducing malaria transmission, and what is the optimal release strategy under climate forcing?
+**How can mathematical models be used to investigate the effect of mosquito population replacement on malaria transmission dynamics?**
 
-## Objectives
+The project is motivated by the need to understand malaria-control strategies beyond conventional vector reduction, particularly approaches that alter the composition or transmission competence of mosquito populations.
 
-1. Develop a deterministic transmission model coupling human SEIR and vector SEI dynamics.
-2. Derive the basic reproduction number ($R_0$) using the Next-Generation Matrix approach.
-3. Analyse disease-free and endemic equilibria for stability.
-4. Perform numerical simulations to visualize epidemic trajectories.
-5. Investigate parameter sensitivity via Latin Hypercube Sampling (LHS) and Partial Rank Correlation Coefficient (PRCC).
-6. Introduce climate-dependent parameters (e.g., seasonal mosquito birth rates).
-7. Evaluate intervention strategies using optimal control theory.
+---
+
+## Research Objectives
+
+The project aims to:
+
+1. Formulate a deterministic compartmental model for malaria transmission.
+2. Represent interactions between human and mosquito populations mathematically.
+3. Establish the mathematical properties of the model.
+4. Derive and analyse the basic reproduction number, \(R_0\).
+5. Investigate disease-free and endemic equilibria.
+6. Perform numerical simulations of transmission dynamics.
+7. Examine the sensitivity of model behaviour to key parameters.
+8. Investigate how environmental or climate-dependent parameters may influence transmission.
+9. Explore intervention strategies through mathematical and computational analysis.
+
+---
 
 ## Mathematical Framework
 
-The core transmission dynamics are governed by a coupled system of nonlinear ordinary differential equations. The human population follows an SEIR structure, while the vector population follows an SEI structure with an additional compartment ($W$) for the replacement mosquito population.
+The model is formulated using a system of ordinary differential equations.
 
-### Human Population Dynamics
-$$\frac{dS_h}{dt} = \Lambda_h - \frac{b \beta_{hv} S_h I_v}{N_h} - \mu_h S_h$$
-$$\frac{dE_h}{dt} = \frac{b \beta_{hv} S_h I_v}{N_h} - (\nu_h + \mu_h) E_h$$
-$$\frac{dI_h}{dt} = \nu_h E_h - (\gamma_h + \mu_h + \delta_h) I_h$$
-$$\frac{dR_h}{dt} = \gamma_h I_h - \mu_h R_h$$
+The human population is divided into epidemiological compartments, while the mosquito population is represented according to its relevant infection or transmission states.
 
-### Vector Population Dynamics (Wild-Type & Replacement)
-$$\frac{dS_v}{dt} = \Lambda_v - \frac{b \beta_{vh} S_v I_h}{N_h} - \mu_v S_v - c S_v W$$
-$$\frac{dE_v}{dt} = \frac{b \beta_{vh} S_v I_h}{N_h} - (\nu_v + \mu_v) E_v$$
-$$\frac{dI_v}{dt} = \nu_v E_v - \mu_v I_v$$
-$$\frac{dW}{dt} = u(t) + \Lambda_w - \mu_w W + c S_v W$$
+A general representation is
 
-*(Where u(t) represents the time-dependent control variable for releasing modified mosquitoes, and c is the competition coefficient).*
+$$
+\frac{d\mathbf{x}}{dt} = \mathbf{F}(\mathbf{x},\theta,t),
+$$
+
+where
+
+* \(\mathbf{x}\) represents the population-state variables,
+* \(\theta\) represents model parameters,
+* \(t\) represents time.
+
+The exact compartment definitions, assumptions, parameter values, and governing equations are documented in the model documentation.
+
+---
+
+## Mathematical Analysis
+
+The analytical component of the project focuses on:
+
+### Basic Reproduction Number
+
+The basic reproduction number \(R_0\) is derived using the appropriate epidemiological framework and is used to investigate conditions associated with disease invasion and persistence.
+
+### Equilibria
+
+The project considers:
+
+* Disease-free equilibrium
+* Endemic equilibrium
+
+where mathematically appropriate.
+
+### Stability
+
+Local stability properties are investigated using analytical and/or numerical methods.
+
+### Sensitivity Analysis
+
+Sensitivity analysis is used to identify parameters that have substantial influence on transmission dynamics and model outcomes.
+
+---
 
 ## Computational Methods
 
-This project relies on a modular modeling ecosystem. The core solvers are imported from our proprietary `ode-modeling-toolkit`.
+The computational implementation uses Python-based scientific-computing tools.
 
-* **Symbolic Computation:** `SymPy` for automated $R_0$ derivation.
-* **Numerical Integration:** `SciPy` (`solve_ivp`) for ODE evaluation.
-* **Data Processing & Analytics:** `NumPy`, `Pandas`.
-* **Visualization:** `Matplotlib` and `Seaborn` for phase portraits and time-series curves.
+### Main technologies
+
+* Python
+* NumPy
+* SciPy
+* Pandas
+* Matplotlib
+* Jupyter
+
+Numerical methods are used to solve the governing differential equations and investigate model behaviour under different parameter configurations.
+
+---
+
+## Project Structure
+
+```text
+malaria-mathematical-modeling/
+│
+├── README.md
+├── src/
+├── notebooks/
+├── analysis/
+├── figures/
+├── data/
+├── tests/
+├── docs/
+├── requirements.txt
+└── LICENSE
+```
+
+---
 
 ## Reproducibility
 
-*(Instructions for cloning the repository and running the simulation scripts will be added as the codebase is populated).*
+The project is maintained using Git and GitHub to support reproducible computational research.
 
-## Author
-**Quadri Ayodeji Ajadi**
+To reproduce the computational experiments:
+
+```bash
+git clone https://github.com/Quadri-Ayo/malaria-mathematical-modeling.git
+cd malaria-mathematical-modeling
+pip install -r requirements.txt
+```
+
+Detailed instructions for individual experiments are provided in the relevant notebooks and documentation.
+
+---
+
+## Research Outputs
+
+Results will be presented through:
+
+* mathematical derivations,
+* numerical simulations,
+* parameter-sensitivity plots,
+* equilibrium analysis,
+* comparative intervention scenarios,
+* and reproducible computational experiments.
+
+Figures included in this repository are generated from the underlying model implementation.
+
+---
+
+## Limitations
+
+The model represents a mathematical abstraction of a complex biological system. Consequently, model predictions depend on assumptions concerning population structure, parameter values, transmission mechanisms, and environmental conditions.
+
+The results should therefore be interpreted as model-based insights rather than direct predictions of malaria incidence in a specific population.
+
+---
+
+## Future Work
+
+Potential extensions include:
+
+* stochastic formulations,
+* spatially explicit models,
+* climate-driven transmission parameters,
+* uncertainty quantification,
+* optimal control,
+* parameter estimation using observational data,
+* and comparison of alternative vector-control strategies.
+
+---
+
+## Research Context
+
+This repository forms part of an independent research portfolio exploring the use of **mathematical modelling and computational methods in mathematical biology and epidemiology**.
+
+The broader objective is to develop rigorous mathematical approaches for understanding complex biological systems and supporting evidence-based disease-control research.
+
+---
+
+## References
+
+Relevant literature used in developing the mathematical formulation, epidemiological assumptions, and analytical methodology is documented in the project references.
+
+> **Status:** Active independent research project.
